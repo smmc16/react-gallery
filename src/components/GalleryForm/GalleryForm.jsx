@@ -1,6 +1,8 @@
 import axios from "axios";
 import './GalleryForm.css';
 import { useState, useEffect } from 'react';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 
 function GalleryForm({getGallery}) {
     const [imageUrl, setImageUrl] = useState('');
@@ -23,10 +25,11 @@ function GalleryForm({getGallery}) {
 
     return (
         <form onSubmit={addImage}>
-            Image Url:<input type="text" onChange={(e) => setImageUrl(e.target.value)}/>
-            Title:<input type="text" onChange={(e) => setImageTitle(e.target.value)}/>
-            Description:<input type="text" onChange={(e) => setImageDesc(e.target.value)}/>
-            <input type="submit" />
+            Image Url:<TextField size="small" type="text" onChange={(e) => setImageUrl(e.target.value)}/>
+            Title:<TextField size="small" type="text" onChange={(e) => setImageTitle(e.target.value)}/>
+            Description:<TextField size="small" type="text" onChange={(e) => setImageDesc(e.target.value)}/>
+            <br />
+            <Button variant="contained" type="submit">Submit</Button>
         </form>
     )
 }
