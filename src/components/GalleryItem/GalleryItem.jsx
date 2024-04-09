@@ -4,6 +4,11 @@ import "./GalleryItem.css";
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
 import Card from '@mui/material/Card';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import Typography from '@mui/material/Typography';
 
 function GalleryItem({item, getGallery}) {
     const [toggleVar, setToggleVar] = useState(true);
@@ -32,7 +37,7 @@ function GalleryItem({item, getGallery}) {
 
     return (
         <Card data-testid="galleryItem" className='galleryItem'>
-            <h3>{item.title}</h3>
+            <Typography variant="h5">{item.title}</Typography>
             { toggleVar ?
             <img data-testid="toggle" src={item.url} onClick={() => toggle()}/> :
             <p data-testid="toggle" className="description" onClick={() => toggle()}>{item.description}</p>
@@ -44,8 +49,8 @@ function GalleryItem({item, getGallery}) {
             </ButtonGroup>
             {
             item.likes === 1 ? 
-            <p>1 like</p> :
-            <p>{item.likes} likes</p>
+            <Typography>1 like</Typography> :
+            <Typography>{item.likes} likes</Typography>
             }
         </Card>
     )
