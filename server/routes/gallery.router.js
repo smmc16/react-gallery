@@ -34,7 +34,7 @@ router.post('/', (req, res) => {
   const queryText = `INSERT INTO "gallery" 
   ("url", "title", "description")
   VALUES
-  ($1, $2, $3)`;
+  ($1, $2, $3);`;
   pool.query(queryText, [item.url, item.title, item.description])
     .then((result) => {
       res.sendStatus(200);
@@ -42,6 +42,20 @@ router.post('/', (req, res) => {
     .catch((error) => {
       console.log('Error in POST', error);
       res.sendStatus(500);
+    })
+})
+
+//DELETE /gallery/delete/:id
+router.delete('/delete/:id', (req, res) => {
+  const item = req.params.id;
+  const queryText = `DELETE FROM "gallery" WHERE "id" = $1;`;
+  pool.query(queryText, [item])
+    .then((result) => {
+     res.sendStatus(200);
+    })
+    .catch((error) => {
+     console.log('Error in POST', error);
+     res.sendStatus(500);
     })
 })
 
