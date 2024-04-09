@@ -28,4 +28,21 @@ router.get('/', (req, res) => {
     })
 });
 
+// POST /gallery
+router.post('/', (req, res) => {
+  const item = req.body;
+  const queryText = `INSERT INTO "gallery" 
+  ("url", "title", "description")
+  VALUES
+  ($1, $2, $3)`;
+  pool.query(queryText, [item.url, item.title, item.description])
+    .then((result) => {
+      res.sendStatus(200);
+    })
+    .catch((error) => {
+      console.log('Error in POST', error);
+      res.sendStatus(500);
+    })
+})
+
 module.exports = router;
