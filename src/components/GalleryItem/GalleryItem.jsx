@@ -14,6 +14,15 @@ function GalleryItem({item, getGallery}) {
         })
     }
 
+    const deleteImage = (id) => {
+        axios.delete(`/api/gallery/delete/${id}`).then((response) => {
+            getGallery();
+        }).catch((error) => {
+            console.log(error);
+            alert('Something went wrong');
+        })
+    }
+
     const toggle = () => {
         setToggleVar(!toggleVar);
     }
@@ -27,6 +36,7 @@ function GalleryItem({item, getGallery}) {
             }
             <br />
             <button onClick={() => addLike(item.id)} data-testid="like">Like</button>
+            <button onClick={() => deleteImage(item.id)}>Delete</button>
             {
             item.likes === 1 ? 
             <p>1 like</p> :
