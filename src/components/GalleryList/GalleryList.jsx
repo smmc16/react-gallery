@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 import GalleryItem from '../GalleryItem/GalleryItem'; 
+import GalleryForm from '../GalleryForm/GalleryForm';
 import './GalleryList.css'
 
 function GalleryList() {
@@ -20,11 +21,14 @@ function GalleryList() {
     }, []);
 
     return (
+        <>
+        <GalleryForm getGallery={getGallery} />
         <div data-testid="galleryList" className="list">
         {gallery.map(item => (
             <GalleryItem key={item.id} item={item} getGallery={getGallery} />
         ))}
         </div>
+        </>
     )
 
 };
