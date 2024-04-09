@@ -1,6 +1,13 @@
 import axios from "axios";
 import './GalleryForm.css';
 import { useState, useEffect } from 'react';
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import Typography from '@mui/material/Typography';
 
 function GalleryForm({getGallery}) {
     const [imageUrl, setImageUrl] = useState('');
@@ -23,10 +30,12 @@ function GalleryForm({getGallery}) {
 
     return (
         <form onSubmit={addImage}>
-            Image Url:<input type="text" onChange={(e) => setImageUrl(e.target.value)}/>
-            Title:<input type="text" onChange={(e) => setImageTitle(e.target.value)}/>
-            Description:<input type="text" onChange={(e) => setImageDesc(e.target.value)}/>
-            <input type="submit" />
+            <Typography>Image Url:</Typography><TextField size="small" type="text" value={imageUrl} onChange={(e) => setImageUrl(e.target.value)} required/>
+            <Typography>Title:</Typography><TextField size="small" type="text" value={imageTitle} onChange={(e) => setImageTitle(e.target.value)} required/>
+            <Typography>Description:</Typography><TextField size="small" type="text" value={imageDesc} onChange={(e) => setImageDesc(e.target.value)} required/>
+            <br />
+            <br />
+            <Button variant="contained" type="submit">Submit</Button>
         </form>
     )
 }
